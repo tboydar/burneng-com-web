@@ -42,13 +42,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
-    <script>
-      // Dark mode toggle
-      const btn = document.getElementById('theme-toggle');
-      btn?.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      });
-    </script>
   </body>
 </html>
