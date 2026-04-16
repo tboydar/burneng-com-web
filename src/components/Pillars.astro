@@ -1,0 +1,36 @@
+---
+const pillars = [
+  {
+    icon: '🤖',
+    title: 'AI × FDE 思維',
+    desc: '不坐教室背單字，嵌入你自己的戰場，用 AI 即時解題。遇到不懂的立刻問，AI 不會笑你。',
+  },
+  {
+    icon: '📖',
+    title: '《一如既往》精神',
+    desc: '不預測，專注不變的事。持續 > 沖刺，敢用 > 完美。21 天養成習慣，比一次性爆發更重要。',
+  },
+  {
+    icon: '🎯',
+    title: '你的戰場',
+    desc: 'PR、提案、簡報、面試——每人帶自己的英文痛點進來。這個團幫你把自己的英文用起來。',
+  },
+];
+---
+
+<section class="py-24 px-6 bg-ash dark:bg-coal" id="pillars">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-coal dark:text-ash">
+      三大核心架構
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      {pillars.map(p => (
+        <div class="bg-white dark:bg-coal/60 rounded-2xl p-8 shadow-lg border border-ember/10 hover:border-ember/30 transition-colors">
+          <div class="text-5xl mb-6">{p.icon}</div>
+          <h3 class="text-xl font-bold mb-3 text-coal dark:text-ash">{p.title}</h3>
+          <p class="text-muted leading-relaxed">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

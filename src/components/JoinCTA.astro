@@ -1,0 +1,30 @@
+---
+const perks = [
+  '不限職業、不限英文程度',
+  '每天 10 分鐘，用碎片時間',
+  '有 AI 訂閱加分、有《原子習慣》加分（但都不是必要）',
+  '4-8 人小隊，有人陪跑不孤單',
+];
+---
+
+<section class="py-24 px-6 bg-ember/5 border-y border-ember/10" id="join">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-black mb-6 text-coal dark:text-ash">
+      如何加入？
+    </h2>
+    <ul class="text-left space-y-3 mb-10 text-coal/80 dark:text-ash/80">
+      {perks.map(p => (
+        <li class="flex items-start gap-3">
+          <span class="text-ember mt-1">✓</span>
+          {p}
+        </li>
+      ))}
+    </ul>
+    <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-10 py-4 bg-ember text-coal font-black rounded-lg hover:bg-flame transition-colors text-lg">
+      留言「我要 AI 共燃！」🔥
+    </a>
+    <p class="mt-6 text-sm text-muted">
+      想陪跑？留言「我要陪跑」✨
+    </p>
+  </div>
+</section>

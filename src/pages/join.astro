@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JoinCTA from '../components/JoinCTA.astro';
+import FireIcon from '../components/FireIcon.astro';
+---
+
+<BaseLayout title="加入 AI 共燃英語團">
+  <div class="max-w-2xl mx-auto px-6 py-24">
+    <div class="flex items-center gap-3 mb-8">
+      <FireIcon size={40} className="text-ember" />
+      <h1 class="text-4xl font-black text-coal dark:text-ash">加入 AI 共燃</h1>
+    </div>
+    <p class="text-lg text-muted mb-12">
+      這個團沒有名額限制，但，我們希望你是認真想過才加入。
+    </p>
+
+    <div class="space-y-8">
+      <div>
+        <h2 class="text-xl font-bold mb-3 text-ember">你需要準備什麼？</h2>
+        <ul class="space-y-2 text-coal/80 dark:text-ash/80">
+          <li>✅ 一個願意嘗試的心</li>
+          <li>✅ 每天 10 分鐘（真的只要 10 分鐘）</li>
+          <li>✅ 一個你想用英文的地方（工作、興趣、生活都算）</li>
+          <li>✅ 有 AI 工具加分（沒有也行）</li>
+          <li>✅ 有《原子習慣》加分（也沒有也行）</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold mb-3 text-ember">這個團不適合誰？</h2>
+        <ul class="space-y-2 text-coal/80 dark:text-ash/80">
+          <li>❌ 想速成的人——21 天不會讓你變強，但會讓你有習慣</li>
+          <li>❌ 不願意開口 / 動手的人——AI 可以幫你，但不能替你學</li>
+          <li>❌ 期待有人盯你写作业的人——這裡是共學，不是補習班</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <JoinCTA />
+</BaseLayout>

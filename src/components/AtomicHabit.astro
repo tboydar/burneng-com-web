@@ -1,0 +1,52 @@
+---
+const rules = [
+  {
+    icon: '🔔',
+    title: '提示',
+    desc: '讓開始變得不用想。鬧鐘響、咖啡倒，就是開始的訊號。',
+  },
+  {
+    icon: '⚡',
+    title: '行動',
+    desc: '每天最少 1 分鐘。1 分鐘太短？對，但做比沒做好。',
+  },
+  {
+    icon: '🏆',
+    title: '獎賞',
+    desc: '上傳截圖，夥伴回應，AI 即時改。回饋讓堅持變簡單。',
+  },
+  {
+    icon: '🤝',
+    title: '互動',
+    desc: '有人陪比自己撐更久。4-8 人的小隊，一起走不孤單。',
+  },
+];
+---
+
+<section class="py-24 px-6 bg-ash dark:bg-coal" id="method">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-coal dark:text-ash">
+      原子習慣四大法則
+    </h2>
+    <p class="text-center text-muted mb-16">用最少的力氣，養成最穩的習慣</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {rules.map(r => (
+        <div class="bg-white dark:bg-coal/60 rounded-xl p-6 border border-ember/10 hover:border-ember/30 transition-colors text-center">
+          <div class="text-4xl mb-4">{r.icon}</div>
+          <h3 class="font-bold text-lg mb-2 text-coal dark:text-ash">{r.title}</h3>
+          <p class="text-sm text-muted">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Key principle -->
+    <div class="mt-16 bg-coal rounded-2xl p-8 text-center">
+      <p class="text-2xl md:text-3xl font-black text-glow">
+        不要錯過兩次
+      </p>
+      <p class="text-ash/70 mt-3">
+        錯一天沒關係。<br class="sm:hidden"/>千萬不要連續錯兩天。
+      </p>
+    </div>
+  </div>
+</section>

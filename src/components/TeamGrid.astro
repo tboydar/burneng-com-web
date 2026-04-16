@@ -1,0 +1,85 @@
+---
+const team = {
+  leaders: [
+    { name: 'dar（小隊長）', role: '發起人', tag: 'PR / 英文不够好' },
+  ],
+  members: [
+    { name: '隊員 A', role: '隊員', tag: '口說' },
+    { name: '隊員 B', role: '隊員', tag: '寫作' },
+  ],
+  pacemakers: [
+    { name: '陪跑員 1', role: '陪跑員', tag: '有留學經驗' },
+    { name: '陪跑員 2', role: '陪跑員', tag: '多益 900+' },
+  ],
+};
+
+const colorMap = ['bg-ember', 'bg-flame', 'bg-accent', 'bg-glow'];
+
+function getAvatarColor(name: string) {
+  return colorMap[name.length % colorMap.length];
+}
+---
+
+<section class="py-24 px-6 bg-white dark:bg-coal/40" id="team">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-coal dark:text-ash">
+      本隊名單
+    </h2>
+
+    <div class="space-y-12">
+      <!-- Leaders -->
+      <div>
+        <h3 class="text-sm uppercase tracking-widest text-muted mb-6 font-inter">小隊長 / 助教</h3>
+        <div class="flex flex-wrap gap-4">
+          {team.leaders.map(m => (
+            <div class="flex items-center gap-3 bg-ember/5 border border-ember/20 rounded-full px-5 py-3">
+              <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-full flex items-center justify-center text-coal font-black text-lg`}>
+                {m.name.charAt(0)}
+              </div>
+              <div>
+                <p class="font-bold text-coal dark:text-ash">{m.name}</p>
+                <p class="text-xs text-muted">{m.tag}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Members -->
+      <div>
+        <h3 class="text-sm uppercase tracking-widest text-muted mb-6 font-inter">隊員</h3>
+        <div class="flex flex-wrap gap-4">
+          {team.members.map(m => (
+            <div class="flex items-center gap-3 bg-ash/50 dark:bg-coal/60 border border-ember/10 rounded-full px-5 py-3">
+              <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-full flex items-center justify-center text-coal font-black text-lg`}>
+                {m.name.charAt(0)}
+              </div>
+              <div>
+                <p class="font-bold text-coal dark:text-ash">{m.name}</p>
+                <p class="text-xs text-muted">{m.tag}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pacemakers -->
+      <div>
+        <h3 class="text-sm uppercase tracking-widest text-muted mb-6 font-inter">陪跑員</h3>
+        <div class="flex flex-wrap gap-4">
+          {team.pacemakers.map(m => (
+            <div class="flex items-center gap-3 bg-accent/5 border border-accent/20 rounded-full px-5 py-3">
+              <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-full flex items-center justify-center text-coal font-black text-lg`}>
+                {m.name.charAt(0)}
+              </div>
+              <div>
+                <p class="font-bold text-coal dark:text-ash">{m.name}</p>
+                <p class="text-xs text-muted">{m.tag}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

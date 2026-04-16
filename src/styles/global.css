@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "@fontsource-variable/noto-sans-tc";
+@import "@fontsource-variable/inter";
+
+/* ===== CSS Variables — Fire Palette ===== */
+:root {
+  --color-ember: #FF6B35;
+  --color-flame: #F7931E;
+  --color-coal: #1A1A1A;
+  --color-ash: #F5F1EB;
+  --color-glow: #FFD166;
+  --color-ink: #2B2B2B;
+  --color-muted: #6B7280;
+  --color-accent: #06A77D;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: var(--color-coal);
+    --text-primary: var(--color-ash);
+  }
+}
+
+[data-theme="light"] {
+  --bg-primary: var(--color-ash);
+  --text-primary: var(--color-ink);
+}
+
+[data-theme="dark"] {
+  --bg-primary: var(--color-coal);
+  --text-primary: var(--color-ash);
+}
+
+/* ===== Base Styles ===== */
+@theme {
+  --color-ember: var(--color-ember);
+  --color-flame: var(--color-flame);
+  --color-coal: var(--color-coal);
+  --color-ash: var(--color-ash);
+  --color-glow: var(--color-glow);
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-accent: var(--color-accent);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary, var(--color-ash));
+  color: var(--text-primary, var(--color-ink));
+}
+
+body {
+  font-family: "Noto Sans TC Variable", "Inter Variable", system-ui, sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Paper Texture Grain ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ash);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ember);
+  border-radius: 3px;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background-color: var(--color-glow);
+  color: var(--color-coal);
+}
+
+/* ===== Focus States ===== */
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 2px;
+}
+
+/* ===== Prose Typography ===== */
+.prose {
+  --tw-prose-body: var(--text-primary);
+  --tw-prose-headings: var(--color-ember);
+  --tw-prose-links: var(--color-flame);
+}

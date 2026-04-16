@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AtomicHabit from '../components/AtomicHabit.astro';
+import FireIcon from '../components/FireIcon.astro';
+---
+
+<BaseLayout title="共學方式 — AI共燃英語團">
+  <div class="max-w-2xl mx-auto px-6 py-24">
+    <div class="flex items-center gap-3 mb-8">
+      <FireIcon size={40} className="text-ember" />
+      <h1 class="text-4xl font-black text-coal dark:text-ash">共學方式</h1>
+    </div>
+
+    <div class="prose prose-lg">
+      <h2 class="text-2xl font-black text-ember">原子習慣四大法則</h2>
+      <p>我們用《原子習慣》的框架，來設計每天的英文練習。</p>
+      <p>核心原則很簡單：<strong>不要錯過兩次。</strong></p>
+      <p>錯一天沒關係，允許自己休息一天。但千萬不要連續錯兩天。</p>
+
+      <h2 class="text-2xl font-black text-ember mt-12">每日一燃格式</h2>
+      <p>每天的練習叫做「一燃」——就像營火，每天加一點柴。</p>
+      <ol>
+        <li>找一個你想用英文的場景（寫 PR、寫郵件、準備面試…）</li>
+        <li>用中文寫下你想表達的意思</li>
+        <li>把中文餵給 AI，請它幫你翻譯</li>
+        <li>把翻譯結果改寫成你自己的話</li>
+        <li>上傳截圖到 Discord，夥伴們會回應</li>
+      </ol>
+    </div>
+  </div>
+  <AtomicHabit />
+</BaseLayout>

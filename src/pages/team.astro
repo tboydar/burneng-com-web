@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+import FireIcon from '../components/FireIcon.astro';
+---
+
+<BaseLayout title="本隊名單 — AI共燃英語團">
+  <div class="max-w-2xl mx-auto px-6 py-24">
+    <div class="flex items-center gap-3 mb-4">
+      <FireIcon size={40} className="text-ember" />
+      <h1 class="text-4xl font-black text-coal dark:text-ash">本隊名單</h1>
+    </div>
+    <p class="text-muted mb-16">這是一個真實的共學團，所有人都是志願參與。</p>
+  </div>
+  <TeamGrid />
+</BaseLayout>
