@@ -1,52 +1,79 @@
 ---
 const rules = [
   {
-    icon: '🔔',
+    num: '01',
     title: '提示',
     desc: '讓開始變得不用想。鬧鐘響、咖啡倒，就是開始的訊號。',
+    color: 'ember',
+    glowClass: 'bg-ember/10 text-ember border-ember/20',
   },
   {
-    icon: '⚡',
+    num: '02',
     title: '行動',
     desc: '每天最少 1 分鐘。1 分鐘太短？對，但做比沒做好。',
+    color: 'flame',
+    glowClass: 'bg-flame/10 text-flame border-flame/20',
   },
   {
-    icon: '🏆',
+    num: '03',
     title: '獎賞',
     desc: '上傳截圖，夥伴回應，AI 即時改。回饋讓堅持變簡單。',
+    color: 'glow',
+    glowClass: 'bg-glow/10 text-glow border-glow/20',
   },
   {
-    icon: '🤝',
+    num: '04',
     title: '互動',
     desc: '有人陪比自己撐更久。4-8 人的小隊，一起走不孤單。',
+    color: 'accent',
+    glowClass: 'bg-accent/10 text-accent border-accent/20',
   },
 ];
 ---
 
-<section class="py-24 px-6 bg-ash dark:bg-coal" id="method">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-black text-center mb-4 text-coal dark:text-ash">
-      原子習慣四大法則
-    </h2>
-    <p class="text-center text-muted mb-16">用最少的力氣，養成最穩的習慣</p>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {rules.map(r => (
-        <div class="bg-white dark:bg-coal/60 rounded-xl p-6 border border-ember/10 hover:border-ember/30 transition-colors text-center">
-          <div class="text-4xl mb-4">{r.icon}</div>
-          <h3 class="font-bold text-lg mb-2 text-coal dark:text-ash">{r.title}</h3>
-          <p class="text-sm text-muted">{r.desc}</p>
+<section class="py-32 px-6 bg-coal relative overflow-hidden" id="method">
+  <!-- Ambient glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-ember/5 blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <p class="text-ember font-inter text-sm tracking-widest uppercase mb-4">原子習慣</p>
+      <h2 class="text-4xl md:text-5xl font-black text-ash mb-4">
+        四大法則
+      </h2>
+      <p class="text-ash/50 text-lg">用最少的力氣，養成最穩的習慣</p>
+    </div>
+
+    <!-- Rule cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {rules.map(rule => (
+        <div class={`group relative rounded-2xl p-6 border ${rule.glowClass} bg-coal/80 backdrop-blur-sm hover:bg-coal transition-all duration-300 hover:-translate-y-1`}>
+          <!-- Number badge -->
+          <div class="absolute -top-3 -left-3 w-10 h-10 rounded-xl bg-coal border border-white/10 flex items-center justify-center">
+            <span class={`text-sm font-black text-${rule.color}`}>{rule.num}</span>
+          </div>
+
+          <h3 class="text-xl font-black text-ash mt-4 mb-3">{rule.title}</h3>
+          <p class="text-sm text-ash/50 leading-relaxed">{rule.desc}</p>
+
+          <!-- Hover glow line -->
+          <div class={`absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-${rule.color} to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500`}></div>
         </div>
       ))}
     </div>
 
-    <!-- Key principle -->
-    <div class="mt-16 bg-coal rounded-2xl p-8 text-center">
-      <p class="text-2xl md:text-3xl font-black text-glow">
-        不要錯過兩次
-      </p>
-      <p class="text-ash/70 mt-3">
-        錯一天沒關係。<br class="sm:hidden"/>千萬不要連續錯兩天。
-      </p>
+    <!-- Key principle — big callout -->
+    <div class="mt-20 relative">
+      <div class="absolute inset-0 bg-gradient-to-r from-ember/20 via-flame/20 to-ember/20 rounded-3xl blur-xl"></div>
+      <div class="relative bg-coal/90 border border-ember/20 rounded-3xl p-10 md:p-14 text-center">
+        <p class="text-4xl md:text-5xl lg:text-6xl font-black text-glow tracking-tight leading-none mb-4">
+          不要錯過兩次
+        </p>
+        <p class="text-ash/60 text-lg md:text-xl max-w-xl mx-auto">
+          錯一天沒關係。<br class="md:hidden"/>千萬不要連續錯兩天。
+        </p>
+      </div>
     </div>
   </div>
 </section>

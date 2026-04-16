@@ -1,0 +1,112 @@
+---
+// FireCanvas renders a p5.js fire particle animation behind the Hero content
+---
+
+<div id="fire-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></div>
+
+<script>
+import p5 from 'p5';
+
+const sketch = (p: p5) => {
+  const particles: {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    life: number;
+    maxLife: number;
+    size: number;
+    hue: number;
+  }[] = [];
+
+  const NUM_PARTICLES = 80;
+  const CENTER_X_RATIO = 0.5;
+  const BOTTOM_Y_RATIO = 0.85;
+
+  p.setup = () => {
+    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.colorMode(p.HSB, 360, 100, 100, 1.0);
+    p.noStroke();
+  };
+
+  p.draw = () => {
+    // Fade background
+    p.background(15, 80, 8, 0.08);
+
+    const cx = p.width * CENTER_X_RATIO;
+    const by = p.height * BOTTOM_Y_RATIO;
+
+    // Emit new particles
+    if (p.frameCount % 2 === 0) {
+      for (let i = 0; i < 3; i++) {
+        const angle = p.random(-0.6, 0.6) - p.HALF_PI;
+        const speed = p.random(1.5, 4.5);
+        const maxLife = p.random(60, 140);
+        particles.push({
+          x: cx + p.random(-40, 40),
+          y: by,
+          vx: p.cos(angle) * speed * p.random(0.5, 1.0),
+          vy: p.sin(angle) * speed,
+          life: maxLife,
+          maxLife,
+          size: p.random(8, 22),
+          hue: p.random(18, 42), // ember to flame hue range
+        });
+      }
+    }
+
+    // Update & draw particles
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const pt = particles[i];
+
+      // Sway
+      pt.vx += p.random(-0.08, 0.08);
+      // Upward drift
+      pt.vy -= p.random(0.04, 0.12);
+      // Damping
+      pt.vx *= 0.98;
+      pt.vy *= 0.98;
+
+      pt.x += pt.vx;
+      pt.y += pt.vy;
+      pt.life--;
+
+      const lifeRatio = pt.life / pt.maxLife;
+      const alpha = lifeRatio * 0.85;
+      const sat = 85 + (1 - lifeRatio) * 15;
+      const bri = 70 + lifeRatio * 20;
+      const sz = pt.size * lifeRatio;
+
+      // Core glow
+      p.fill(pt.hue, sat, bri, alpha * 0.6);
+      p.ellipse(pt.x, pt.y, sz * 1.6, sz * 1.6);
+
+      // Bright center
+      p.fill(pt.hue, sat * 0.4, 100, alpha * 0.9);
+      p.ellipse(pt.x, pt.y, sz * 0.5, sz * 0.5);
+    }
+
+    // Remove dead particles
+    while (particles.length > NUM_PARTICLES + 20) {
+      particles.shift();
+    }
+
+    // Central glow
+    p.noStroke();
+    const pulse = p.sin(p.frameCount * 0.025) * 0.03 + 0.12;
+    for (let r = 3; r > 0; r--) {
+      p.fill(22, 90, 60, pulse / r);
+      p.ellipse(cx, by - 30, p.width * 0.18 * r, p.width * 0.18 * r * 0.7);
+    }
+  };
+
+  p.windowResized = () => {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  };
+};
+
+const container = document.getElementById('fire-canvas');
+if (container) {
+  new p5(sketch, container);
+}
+</script>

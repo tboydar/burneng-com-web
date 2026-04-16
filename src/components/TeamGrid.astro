@@ -18,68 +18,56 @@ const colorMap = ['bg-ember', 'bg-flame', 'bg-accent', 'bg-glow'];
 function getAvatarColor(name: string) {
   return colorMap[name.length % colorMap.length];
 }
+
+const groups = [
+  { title: '小隊長 / 助教', data: team.leaders, accent: 'ember' },
+  { title: '隊員', data: team.members, accent: 'ash' },
+  { title: '陪跑員', data: team.pacemakers, accent: 'accent' },
+];
 ---
 
-<section class="py-24 px-6 bg-white dark:bg-coal/40" id="team">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-black text-center mb-16 text-coal dark:text-ash">
-      本隊名單
-    </h2>
+<section class="py-32 px-6 bg-coal relative overflow-hidden" id="team">
+  <!-- Ambient glow -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/2 left-1/4 w-[400px] h-[400px] rounded-full bg-ember/5 blur-[100px]"></div>
+    <div class="absolute top-1/2 right-1/4 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[80px]"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <p class="text-ember font-inter text-sm tracking-widest uppercase mb-4">燃燒中的伙伴</p>
+      <h2 class="text-4xl md:text-5xl font-black text-ash mb-4">本隊名單</h2>
+      <p class="text-ash/50 text-lg">4-8 人的小隊，一起走 21 天</p>
+    </div>
 
     <div class="space-y-12">
-      <!-- Leaders -->
-      <div>
-        <h3 class="text-sm uppercase tracking-widest text-muted mb-6 font-inter">小隊長 / 助教</h3>
-        <div class="flex flex-wrap gap-4">
-          {team.leaders.map(m => (
-            <div class="flex items-center gap-3 bg-ember/5 border border-ember/20 rounded-full px-5 py-3">
-              <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-full flex items-center justify-center text-coal font-black text-lg`}>
-                {m.name.charAt(0)}
-              </div>
-              <div>
-                <p class="font-bold text-coal dark:text-ash">{m.name}</p>
-                <p class="text-xs text-muted">{m.tag}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      {groups.map(group => (
+        <div>
+          <!-- Group label -->
+          <div class="flex items-center gap-4 mb-6">
+            <span class="text-xs font-inter tracking-widest uppercase text-ash/30">{group.title}</span>
+            <div class="flex-1 h-px bg-gradient-to-r from-ash/10 to-transparent"></div>
+          </div>
 
-      <!-- Members -->
-      <div>
-        <h3 class="text-sm uppercase tracking-widest text-muted mb-6 font-inter">隊員</h3>
-        <div class="flex flex-wrap gap-4">
-          {team.members.map(m => (
-            <div class="flex items-center gap-3 bg-ash/50 dark:bg-coal/60 border border-ember/10 rounded-full px-5 py-3">
-              <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-full flex items-center justify-center text-coal font-black text-lg`}>
-                {m.name.charAt(0)}
+          <!-- Members -->
+          <div class="flex flex-wrap gap-4">
+            {group.data.map(m => (
+              <div class="group flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/5 border border-white/10 hover:border-ember/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5">
+                <!-- Avatar -->
+                <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-xl flex items-center justify-center text-coal font-black text-lg flex-shrink-0 group-hover:scale-105 transition-transform`}>
+                  {m.name.charAt(0)}
+                </div>
+                <!-- Info -->
+                <div class="min-w-0">
+                  <p class="font-bold text-ash text-sm truncate">{m.name}</p>
+                  <p class="text-xs text-ember/70">{m.tag}</p>
+                </div>
               </div>
-              <div>
-                <p class="font-bold text-coal dark:text-ash">{m.name}</p>
-                <p class="text-xs text-muted">{m.tag}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-
-      <!-- Pacemakers -->
-      <div>
-        <h3 class="text-sm uppercase tracking-widest text-muted mb-6 font-inter">陪跑員</h3>
-        <div class="flex flex-wrap gap-4">
-          {team.pacemakers.map(m => (
-            <div class="flex items-center gap-3 bg-accent/5 border border-accent/20 rounded-full px-5 py-3">
-              <div class={`w-12 h-12 ${getAvatarColor(m.name)} rounded-full flex items-center justify-center text-coal font-black text-lg`}>
-                {m.name.charAt(0)}
-              </div>
-              <div>
-                <p class="font-bold text-coal dark:text-ash">{m.name}</p>
-                <p class="text-xs text-muted">{m.tag}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

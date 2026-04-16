@@ -11,14 +11,24 @@ import JoinCTA from '../components/JoinCTA.astro';
   <Hero />
 
   <!-- Why Section -->
-  <section class="py-24 px-6 bg-white dark:bg-coal/40" id="why">
-    <div class="max-w-2xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-black mb-8 text-coal dark:text-ash">為什麼是這個團？</h2>
-      <div class="prose prose-lg">
-        <p>夜間部高職出身，學生時期英文就是那種「考試能猜就猜、能混就混」的程度。</p>
-        <p>沒有留學經驗，沒有從小雙語環境，就是一個土生土長、靠著工作被逼著用英文的台灣工程師。</p>
-        <blockquote class="border-l-4 border-ember pl-6 text-xl font-bold text-ember my-8">
-          所以這個團，不是英文很強的人來教你，是一群英文不夠好的人一起用 AI 慢慢變好。
+  <section class="py-32 px-6 bg-white dark:bg-[#0f0f0f] relative overflow-hidden" id="why">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50Z' fill='none' stroke='%23000' stroke-width='0.5'/%3E%3C/svg%3E');"></div>
+    <div class="max-w-2xl mx-auto relative z-10">
+      <div class="text-center mb-12">
+        <p class="text-ember font-inter text-sm tracking-widest uppercase mb-4">發起人的話</p>
+        <h2 class="text-3xl md:text-4xl font-black mb-8 text-coal dark:text-ash">為什麼是這個團？</h2>
+      </div>
+      <div class="bg-coal/5 dark:bg-white/5 rounded-2xl p-8 md:p-10 border border-coal/10 dark:border-white/10">
+        <p class="text-coal/80 dark:text-ash/80 leading-relaxed mb-6">
+          夜間部高職出身，學生時期英文就是那種「考試能猜就猜、能混就混」的程度。
+        </p>
+        <p class="text-coal/80 dark:text-ash/80 leading-relaxed mb-8">
+          沒有留學經驗，沒有從小雙語環境，就是一個土生土長、靠著工作被逼著用英文的台灣工程師。
+        </p>
+        <blockquote class="border-l-4 border-ember pl-6 py-2">
+          <p class="text-xl md:text-2xl font-black text-ember leading-snug">
+            所以這個團，不是英文很強的人來教你，是一群英文不夠好的人一起用 AI 慢慢變好。
+          </p>
         </blockquote>
       </div>
     </div>
@@ -28,19 +38,26 @@ import JoinCTA from '../components/JoinCTA.astro';
   <AtomicHabit />
 
   <!-- Results Section -->
-  <section class="py-24 px-6 bg-coal text-ash" id="results">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-black mb-16">預計成果</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+  <section class="py-32 px-6 bg-coal relative overflow-hidden" id="results">
+    <!-- Big numbers background -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+      <span class="text-[20vw] font-black text-white/[0.02] leading-none whitespace-nowrap">21</span>
+    </div>
+
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <p class="text-ember font-inter text-sm tracking-widest uppercase mb-4">21 天後</p>
+      <h2 class="text-4xl md:text-5xl font-black text-ash mb-16">預計成果</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         {[
-          { num: '21', label: '天' },
-          { num: '9+', label: '個英文任務產出' },
-          { num: '1', label: '份個人常用表達清單' },
-          { num: '4-8', label: '人的小隊' },
+          { num: '21', label: '天', sub: '持續燃燒' },
+          { num: '9+', label: '個任務產出', sub: '英文實戰作品' },
+          { num: '1', label: '份表達清單', sub: '自己的常用句型' },
+          { num: '4-8', label: '人的小隊', sub: '有人陪不孤單' },
         ].map(r => (
-          <div>
-            <p class="text-5xl md:text-6xl font-black italic text-glow">{r.num}</p>
-            <p class="text-ash/70 mt-2">{r.label}</p>
+          <div class="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-ember/40 transition-all duration-300 hover:-translate-y-1">
+            <p class="text-5xl md:text-6xl font-black italic text-glow leading-none mb-2">{r.num}</p>
+            <p class="text-ash font-bold mb-1">{r.label}</p>
+            <p class="text-xs text-ash/40">{r.sub}</p>
           </div>
         ))}
       </div>
